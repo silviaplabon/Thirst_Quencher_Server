@@ -71,7 +71,7 @@ app.get('/RandomDrinks', (req, res) => {
   })
   app.post('/LatestDrink', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client site")
+    console.log(req.body, "come from client sites")
     LatestDrinksCollection.insertOne(newProduct)
       .then(result => {
         console.log('inserted count', result.insertedCount);
