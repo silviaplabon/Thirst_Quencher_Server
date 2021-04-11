@@ -141,25 +141,25 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
 
 
   app.get('/product/PopularDrinks/:id', (req, res) => {
-    PopularDrinksCollection.find({ _id: ObjectID(req.params.id) })
+    PopularDrinksCollection.find({ _id:ObjectID(req.params.id) })
       .toArray((err, products) => {
         res.send(products[0])
       })
   })
     app.get('/product/PopularIngredients/:id', (req, res) => {
-    PopularIngredientsCollection.find({ _id: ObjectID(req.params.id) })
+    PopularIngredientsCollection.find({ _id:ObjectID(req.params.id) })
       .toArray((err, products) => {
         res.send(products[0])
       })
   })
   app.get('/product/LatestDrinks/:id', (req, res) => {
-    LatestDrinksCollection.find({ _id: ObjectID(req.params.id) })
+    LatestDrinksCollection.find({ _id:ObjectID(req.params.id) })
       .toArray((err, products) => {
         res.send(products[0])
       })
   })
   app.get('/product/RandomIngredients/:id', (req, res) => {
-    RandomIngredientsCollection.find({ _id: ObjectID(req.params.id) })
+    RandomIngredientsCollection.find({ _id:ObjectID(req.params.id) })
       .toArray((err, products) => {
         res.send(products[0])
       })
@@ -175,7 +175,6 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
   // 
 
 app.patch('/update/PopularDrinks/:id',(req,res)=>{
-  console.log(req.body.price);
   PopularDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
@@ -187,7 +186,6 @@ app.patch('/update/PopularDrinks/:id',(req,res)=>{
 
 
 app.patch('/update/PopularIngredients/:id',(req,res)=>{
-  console.log(req.body.price);
   PopularIngredientsCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
@@ -199,7 +197,6 @@ app.patch('/update/PopularIngredients/:id',(req,res)=>{
 
 
 app.patch('/update/LatestDrinks/:id',(req,res)=>{
-  console.log(req.body.price);
    LatestDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
@@ -211,7 +208,6 @@ app.patch('/update/LatestDrinks/:id',(req,res)=>{
 
 
 app.patch('/update/RandomDrinks/:id',(req,res)=>{
-  console.log(req.body.price);
   RandomDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
@@ -223,7 +219,6 @@ app.patch('/update/RandomDrinks/:id',(req,res)=>{
 
 
 app.patch('/update/RandomIngredients/:id',(req,res)=>{
-  console.log(req.body.price);
    RandomIngredientsCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
