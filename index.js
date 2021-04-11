@@ -50,6 +50,46 @@ app.get('/RandomDrinks', (req, res) => {
     })
 })
 
+//delete start
+
+app.delete('/deleteProduct/PopularDrinks/:id',(req,res)=>{
+  PopularDrinksCollection.deleteOne({_id: ObjectID(req.params.id) })
+  .then(result => {
+    console.log(result)
+    res.send(result.deletedCount > 0)
+  })
+})
+app.delete('/deleteProduct/PopularIngredients/:id',(req,res)=>{
+  PopularIngredientsCollection.deleteOne({_id: ObjectID(req.params.id) })
+  .then(result => {
+    console.log(result)
+    res.send(result.deletedCount > 0)
+  })
+})
+app.delete('/deleteProduct/LatestDrinks/:id',(req,res)=>{
+  LatestDrinksCollection.deleteOne({_id: ObjectID(req.params.id) })
+  .then(result => {
+    console.log(result)
+    res.send(result.deletedCount > 0)
+  })
+})
+app.delete('/deleteProduct/RandomIngredients/:id',(req,res)=>{
+  RandomIngredientsCollection.deleteOne({_id: ObjectID(req.params.id) })
+  .then(result => {
+    console.log(result)
+    res.send(result.deletedCount > 0)
+  })
+})
+app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
+  RandomDrinksCollection.deleteOne({_id: ObjectID(req.params.id) })
+  .then(result => {
+    console.log(result)
+    res.send(result.deletedCount > 0)
+  })
+})
+// delete end
+
+
   app.post('/PopularDrink', (req, res) => {
     const newProduct = req.body;
     console.log(newProduct);
