@@ -171,9 +171,9 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
 
   // 
 
-app.patch('/update/PopularDrinks/:id',function(req,res){
+app.patch('/update/PopularDrinks/:id',(req,res)=>{
   console.log(req.body.price);
-  PopularDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+  PopularDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
@@ -183,9 +183,9 @@ app.patch('/update/PopularDrinks/:id',function(req,res){
 })
 
 
-app.patch('/update/PopularIngredients/:id',function(req,res){
+app.patch('/update/PopularIngredients/:id',(req,res)=>{
   console.log(req.body.price);
-  PopularIngredientsCollection.updateOne({_id: ObjectId(req.params.id)},
+  PopularIngredientsCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
@@ -195,9 +195,9 @@ app.patch('/update/PopularIngredients/:id',function(req,res){
 })
 
 
-app.patch('/update/LatestDrinks/:id',function(req,res){
+app.patch('/update/LatestDrinks/:id',(req,res)=>{
   console.log(req.body.price);
-   LatestDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+   LatestDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
@@ -207,9 +207,9 @@ app.patch('/update/LatestDrinks/:id',function(req,res){
 })
 
 
-app.patch('/update/RandomDrinks/:id',function(req,res){
+app.patch('/update/RandomDrinks/:id',(req,res)=>{
   console.log(req.body.price);
-  RandomDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+  RandomDrinksCollection.updateOne({_id: ObjectID(req.params.id))},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
@@ -219,9 +219,9 @@ app.patch('/update/RandomDrinks/:id',function(req,res){
 })
 
 
-app.patch('/update/RandomIngredients/:id',function(req,res){
+app.patch('/update/RandomIngredients/:id',(req,res)=>{
   console.log(req.body.price);
-   RandomIngredientsCollection.updateOne({_id: ObjectId(req.params.id)},
+   RandomIngredientsCollection.updateOne({_id: ObjectID(req.params.id))},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
