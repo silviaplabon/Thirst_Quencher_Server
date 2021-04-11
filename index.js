@@ -90,7 +90,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
 // delete end
 
 
-  app.post('/PopularDrink', (req, res) => {
+  app.post('/adddata/PopularDrink', (req, res) => {
     const newProduct = req.body;
     console.log(newProduct);
     console.log(req.body, "come from client site")
@@ -100,7 +100,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(result.insertedCount > 0)
       })
   })
-  app.post('/PopularIngredient', (req, res) => {
+  app.post('/addata/PopularIngredient', (req, res) => {
     const newProduct = req.body;
     console.log(req.body, "come from client site")
     PopularIngredientsCollection.insertOne(newProduct)
@@ -109,7 +109,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(result.insertedCount > 0)
       })
   })
-  app.post('/LatestDrink', (req, res) => {
+  app.post('/adddata/LatestDrink', (req, res) => {
     const newProduct = req.body;
     console.log(req.body, "come from client sites")
     LatestDrinksCollection.insertOne(newProduct)
@@ -118,7 +118,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(result.insertedCount > 0)
       })
   })
-  app.post('/RandomIngredient', (req, res) => {
+  app.post('/adddata/RandomIngredient', (req, res) => {
     const newProduct = req.body;
     console.log(req.body, "come from client site")
     RandomIngredientsCollection.insertOne(newProduct)
@@ -127,7 +127,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(result.insertedCount > 0)
       })
   })
-  app.post('/RandomDrink', (req, res) => {
+  app.post('/adddata/RandomDrink', (req, res) => {
     const newProduct = req.body;
     console.log(req.body, "come from client site")
     RandomDrinksCollection.insertOne(newProduct)
@@ -136,6 +136,9 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(result.insertedCount > 0)
       })
   })
+
+
+
 
   app.get('/product/PopularDrinks/:id', (req, res) => {
     PopularDrinksCollection.find({ _id: ObjectID(req.params.id) })
