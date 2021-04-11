@@ -19,31 +19,31 @@ client.connect(err => {
   const RandomDrinksCollection = client.db('Cocktail_collection').collection("RandomDrinks");
   console.log("database connected");
 //////////////////////////////////////////////////////Inserting Home page Data///////////////////////////////////////////////////////
-app.get('/PopularDrinks', (req, res) => {
+app.get('/productdata/PopularDrinks', (req, res) => {
   PopularDrinksCollection.find({})
     .toArray((err, products) => {
       res.send(products)
     })
 })
-app.get('/PopularIngredients', (req, res) => {
+app.get('/productdata/PopularIngredients', (req, res) => {
   PopularIngredientsCollection.find({})
     .toArray((err, products) => {
       res.send(products)
     })
 })
-app.get('/LatestDrinks', (req, res) => {
+app.get('/productdata/LatestDrinks', (req, res) => {
   LatestDrinksCollection.find({})
     .toArray((err, products) => {
       res.send(products)
     })
 })
-app.get('/RandomIngredients', (req, res) => {
+app.get('/productdata/RandomIngredients', (req, res) => {
   RandomIngredientsCollection.find({})
     .toArray((err, products) => {
       res.send(products)
     })
 })
-app.get('/RandomDrinks', (req, res) => {
+app.get('/productdata/RandomDrinks', (req, res) => {
   RandomDrinksCollection.find({})
     .toArray((err, products) => {
       res.send(products)
