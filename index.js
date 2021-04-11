@@ -212,7 +212,7 @@ app.patch('/update/LatestDrinks/:id',(req,res)=>{
 
 app.patch('/update/RandomDrinks/:id',(req,res)=>{
   console.log(req.body.price);
-  RandomDrinksCollection.updateOne({_id: ObjectID(req.params.id))},
+  RandomDrinksCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
@@ -224,7 +224,7 @@ app.patch('/update/RandomDrinks/:id',(req,res)=>{
 
 app.patch('/update/RandomIngredients/:id',(req,res)=>{
   console.log(req.body.price);
-   RandomIngredientsCollection.updateOne({_id: ObjectID(req.params.id))},
+   RandomIngredientsCollection.updateOne({_id: ObjectID(req.params.id)},
    {
     $set:{name:req.body.name,imageURL:req.body.imageURL}
    })
