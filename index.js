@@ -167,39 +167,68 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
         res.send(products[0])
       })
   })
- 
-//   app.get('/productsdata', (req, res) => {
-//     productCollection.find({})
-//       .toArray((err, products) => {
-//         res.send(products)
-//       })
-//   })
 
 
+  // 
 
-//   app.post('/addProduct', (req, res) => {
-//     const newProduct = req.body;
-//     console.log(req.body, "come from client site")
-//     productCollection.insertOne(newProduct)
-//       .then(result => {
-//         console.log('inserted count', result.insertedCount);
-//         res.send(result.insertedCount > 0)
-//       })
-//   })
-//   app.post('/addOrder', (req, res) => {
-//     const order = req.body;
-//     orderCollection.insertOne(order)
-//       .then(result => {
-//         res.send(result.insertedCount > 0)
-//       })
-//   })
-//   app.delete('/deleteProduct/:id',(req,res)=>{
-//     productCollection.deleteOne({_id: ObjectID(req.params.id) })
-//     .then(result => {
-//       console.log(result)
-//       res.send(result.deletedCount > 0)
-//     })
-//   })
+app.patch('/update/PopularDrinks/:id',function(req,res){
+  console.log(req.body.price);
+  PopularDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+   {
+    $set:{name:req.body.name,imageURL:req.body.imageURL}
+   })
+   .then (result=>{
+      res.send(result.modifiedCount>0)
+   })
+})
+
+
+app.patch('/update/PopularIngredients/:id',function(req,res){
+  console.log(req.body.price);
+  PopularIngredientsCollection.updateOne({_id: ObjectId(req.params.id)},
+   {
+    $set:{name:req.body.name,imageURL:req.body.imageURL}
+   })
+   .then (result=>{
+      res.send(result.modifiedCount>0)
+   })
+})
+
+
+app.patch('/update/LatestDrinks/:id',function(req,res){
+  console.log(req.body.price);
+   LatestDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+   {
+    $set:{name:req.body.name,imageURL:req.body.imageURL}
+   })
+   .then (result=>{
+      res.send(result.modifiedCount>0)
+   })
+})
+
+
+app.patch('/update/RandomDrinks/:id',function(req,res){
+  console.log(req.body.price);
+  RandomDrinksCollection.updateOne({_id: ObjectId(req.params.id)},
+   {
+    $set:{name:req.body.name,imageURL:req.body.imageURL}
+   })
+   .then (result=>{
+      res.send(result.modifiedCount>0)
+   })
+})
+
+
+app.patch('/update/RandomIngredients/:id',function(req,res){
+  console.log(req.body.price);
+   RandomIngredientsCollection.updateOne({_id: ObjectId(req.params.id)},
+   {
+    $set:{name:req.body.name,imageURL:req.body.imageURL}
+   })
+   .then (result=>{
+      res.send(result.modifiedCount>0)
+   })
+})
 
 
 });
