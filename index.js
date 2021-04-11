@@ -181,6 +181,7 @@ app.patch('/update/PopularDrinks/:id',(req,res)=>{
    })
    .then (result=>{
       res.send(result.modifiedCount>0)
+      console.log(result);
    })
 })
 
@@ -192,6 +193,7 @@ app.patch('/update/PopularIngredients/:id',(req,res)=>{
    })
    .then (result=>{
       res.send(result.modifiedCount>0)
+      console.log(result);
    })
 })
 
@@ -203,6 +205,7 @@ app.patch('/update/LatestDrinks/:id',(req,res)=>{
    })
    .then (result=>{
       res.send(result.modifiedCount>0)
+      console.log(result);
    })
 })
 
@@ -214,6 +217,7 @@ app.patch('/update/RandomDrinks/:id',(req,res)=>{
    })
    .then (result=>{
       res.send(result.modifiedCount>0)
+      console.log(result);
    })
 })
 
@@ -225,6 +229,7 @@ app.patch('/update/RandomIngredients/:id',(req,res)=>{
    })
    .then (result=>{
       res.send(result.modifiedCount>0)
+      console.log(result);
    })
 })
 
