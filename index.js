@@ -137,6 +137,37 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
       })
   })
 
+  app.get('/product/PopularDrinks/:id', (req, res) => {
+    PopularDrinksCollection.find({ _id: ObjectID(req.params.id) })
+      .toArray((err, products) => {
+        res.send(products[0])
+      })
+  })
+    app.get('/product/PopularIngredients/:id', (req, res) => {
+    PopularIngredientsCollection.find({ _id: ObjectID(req.params.id) })
+      .toArray((err, products) => {
+        res.send(products[0])
+      })
+  })
+  app.get('/product/LatestDrinks/:id', (req, res) => {
+    LatestDrinksCollection.find({ _id: ObjectID(req.params.id) })
+      .toArray((err, products) => {
+        res.send(products[0])
+      })
+  })
+  app.get('/product/RandomIngredients/:id', (req, res) => {
+    RandomIngredientsCollection.find({ _id: ObjectID(req.params.id) })
+      .toArray((err, products) => {
+        res.send(products[0])
+      })
+  })
+  app.get('/product/RandomDrinks/:id', (req, res) => {
+    RandomDrinksCollection.find({ _id: ObjectID(req.params.id) })
+      .toArray((err, products) => {
+        res.send(products[0])
+      })
+  })
+ 
 //   app.get('/productsdata', (req, res) => {
 //     productCollection.find({})
 //       .toArray((err, products) => {
@@ -144,12 +175,7 @@ app.delete('/deleteProduct/RandomDrinks/:id',(req,res)=>{
 //       })
 //   })
 
-//   app.get('/product/:id', (req, res) => {
-//     productCollection.find({ _id: ObjectID(req.params.id) })
-//       .toArray((err, products) => {
-//         res.send(products[0])
-//       })
-//   })
+
 
 //   app.post('/addProduct', (req, res) => {
 //     const newProduct = req.body;
