@@ -476,6 +476,12 @@ client.connect(err => {
       })
   })
 
+  app.get('/Order/userAllCollection', (req, res) => {
+    OrdersCollection.find({})
+      .toArray((err, documents) => {
+        res.send(documents);
+      })
+  })
 
 
   app.get('/user/singleOrderCollection', (req, res) => {
@@ -585,6 +591,15 @@ client.connect(err => {
       })
   })
 
+  app.patch('/statusUpdate/AdminShipment/:id', (req, res) => {
+    OrdersCollection.updateOne({ _id: ObjectID(req.params.id) },
+      {
+        $set: { status: req.body.status }
+      })
+      .then(result => {
+        res.send(result.modifiedCount > 0)
+      })
+  })
 
 
 
