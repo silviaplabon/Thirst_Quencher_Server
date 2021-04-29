@@ -484,30 +484,30 @@ client.connect(err => {
 
 
   app.get('/user/singleOrderCollection', (req, res) => {
-    const bearer = req.headers.authorization;
-    if (bearer && bearer.startsWith('Bearer')) {
-      const idToken = bearer.split(' ')[1];//extracting second part
-      admin.auth().verifyIdToken(idToken)
-        .then((decodedToken) => {
-          let tokenEmail = decodedToken.email;
-          let queryEmail = req.query.email;
-          console.log(tokenEmail, queryEmail)
-          if (tokenEmail == queryEmail) {
+    // const bearer = req.headers.authorization;
+    // if (bearer && bearer.startsWith('Bearer')) {
+    //   const idToken = bearer.split(' ')[1];//extracting second part
+    //   admin.auth().verifyIdToken(idToken)
+    //     .then((decodedToken) => {
+    //       let tokenEmail = decodedToken.email;
+    //       let queryEmail = req.query.email;
+    //       console.log(tokenEmail, queryEmail)
+    //       if (tokenEmail == queryEmail) {
             SingleOrderCollection.find({ email: req.query.email })
               .toArray((err, documents) => {
-                console.log(documents.length)
+                console.log(documents?.length)
                 res.send(documents);
               })
-          }
-          else {
-            res.send("unauthorized access");
-          }
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
-
-    }
+          // }
+        //   else {
+        //     res.send("unauthorized access");
+        //   }
+        // })
+        // .catch((error) => {
+        //   console.log('error', error)
+        // })
+// 
+ // }
   })
   app.delete('/deleteSingleOrder/:id', (req, res) => {
     SingleOrderCollection.deleteOne({ _id: ObjectID(req.params.id) })
@@ -524,14 +524,14 @@ client.connect(err => {
         res.send(result.insertedCount > 0)
       })
   })
-  // app.get('/searchDrinksByName/:name', (req, res) => {
-  //   console.log(req.params.name)
-  //   const pattern=req.params.name;
-  //   AllDrinksCollection.find({"strDrink":pattern})
-  //     .toArray((err, documents) => {
-  //       res.send(documents);
-  //     })
-  // })
+  app.get('/searchDrinksByName/:name', (req, res) => {
+    console.log(req.params.name)
+    const pattern=req.params.name;
+    AllDrinksCollection.find({})
+      .toArray((err, documents) => {
+        res.send(documents);
+      })
+  })
   //Admin Maker start
   app.get('/userIsAdmin', (req, res) => {
     AdminsCollection.find({ email: req.query.email })
