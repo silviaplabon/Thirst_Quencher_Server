@@ -527,7 +527,7 @@ client.connect(err => {
   app.get('/searchDrinksByName/:name', (req, res) => {
     console.log(req.params.name)
     const pattern=req.params.name;
-    AllDrinksCollection.find({})
+    AllDrinksCollection.find({$text:{$search:req.params}})
       .toArray((err, documents) => {
         res.send(documents);
       })
