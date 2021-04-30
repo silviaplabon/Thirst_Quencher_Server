@@ -526,9 +526,10 @@ client.connect(err => {
   })
   app.get('/searchDrinksByName/:name', (req, res) => {
     console.log(req.params.name)
-    const pattern=req.params.name;
-    AllDrinksCollection.find({$text:{$search:req.params}})
+
+    AllDrinksCollection.find({strDrink:{$regex:/req.params.name/i}})
       .toArray((err, documents) => {
+        console.log(documents,"documents 532")
         res.send(documents);
       })
   })
@@ -597,6 +598,15 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
+      })
+  })
+
+
+  app.get('/SingleOrderDetailFinding/:id', (req, res) => {
+    SingleOrderCollection.findOne({ _id: ObjectID(req.params.id) })
+      .then(result => {
+        console.log(result,"result")
+        res.send(result)
       })
   })
 
