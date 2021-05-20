@@ -431,10 +431,18 @@ client.connect(err => {
         res.send(result.insertedCount > 0)
       })
   })
-  app.get('/SingleOrderDataShow/:idDrink', (req, res) => {
-    SingleOrderCollection.findOne({ "idDrink": req.params.idDrink })
+  app.get('/SingleOrderDataShow/:idDrink/:email', (req, res) => {
+    SingleOrderCollection.findOne({$and: [{ idDrink: req.params.idDrink},{email:req.params.email}]})
       .then(result => {
-        res.send(result)
+        if(result!=null){
+           res.send(result)
+          console.log(result,"orderisExist")
+        }
+        else{
+          res.send('false')
+          console.log('error occur')
+        }
+         
       })
   })
   // app.get('/orderProductFindingFromDB/:idDrink/:strDrink', (req, res) => {
