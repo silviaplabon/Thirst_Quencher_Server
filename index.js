@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const admin = require('firebase-admin');
 
 
-var serviceAccount = require("./.configs/cocktail-collection-firebase-adminsdk-1hj34-6483748cb4.json");
+var serviceAccount = require("./.configs/thirst-quencher-firebase-adminsdk-1ym2d-6696119f68.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
