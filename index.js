@@ -572,6 +572,14 @@ client.connect(err => {
       res.send(result.deletedCount > 0)
     }) 
   })
+  app.delete('/deleteUserDoneCollection/:id', (req, res) => {
+    console.log(req.params.id)
+    OrdersCollection.deleteOne({_id:ObjectID(req.params.id)})
+    .then(result => {
+      res.send(result.deletedCount > 0)
+      console.log('deleted',result)
+    }) 
+  })
   app.post('/addMessage', (req, res) => {
     const newMessage = req.body;
     console.log(req.body, "come from client site")
