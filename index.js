@@ -158,15 +158,15 @@ client.connect(err => {
       })
   })
   ///////////////////////////////////////////////////////////////END: ADD Homepage Data///////////////////////////////////////////
-  // app.post('/addDrinksCollection', (req, res) => {
-  //   const newProduct = req.body;
-  //   console.log(req.body, "come from client site")
-  //   AllDrinksCollection.insertOne(newProduct)
-  //     .then(result => {
-  //       console.log('inserted count', result.insertedCount);
-  //       res.send(result.insertedCount > 0)
-  //     })
-  // })
+  app.post('/addDrinksCollection', (req, res) => {
+    const newProduct = req.body;
+    console.log(req.body, "come from client site")
+    AllDrinksCollection.insertOne(newProduct)
+      .then(result => {
+        console.log('inserted count', result.insertedCount);
+        res.send(result.insertedCount > 0)
+      })
+  })
 
 
 
@@ -288,15 +288,15 @@ client.connect(err => {
   //       res.send(result.insertedCount > 0)
   //     })
   // })
-  //   app.post('/filter/ingredientsList', (req, res) => {
-  //   const newGlass = req.body;
-  //   console.log(req.body, "come from client sites")
-  //   IngredientsListCollection.insertOne(newGlass)
-  //     .then(result => {
-  //       console.log('inserted count', result.insertedCount);
-  //       res.send(result.insertedCount > 0)
-  //     })
-  // })
+    app.post('/filter/ingredientsList', (req, res) => {
+    const newGlass = req.body;
+    console.log(req.body, "come from client sites")
+    IngredientsListCollection.insertOne(newGlass)
+      .then(result => {
+        console.log('inserted count', result.insertedCount);
+        res.send(result.insertedCount > 0)
+      })
+  })
   //////////////////////////////////////////////////END Listing category or Glass List///////////////////////////////////
   app.get('/drinkDetailByName/:name', (req, res) => {
     AllDrinksCollection.findOne({ "strDrink": req.params.name })
@@ -305,13 +305,26 @@ client.connect(err => {
       })
   })
   app.get('/drinkDetailById/:id', (req, res) => {
-    console.log(req.params.id)
-    AllDrinksCollection.findOne({ _id: ObjectID(req.params.id) })
+   const id=req.params.id;
+   console.log(id)
+    AllDrinksCollection.findOne({ idDrink: id })
       .then(result => {
         console.log(result.length);
+        console.log(result)
         res.send(result)
       })
   })
+
+// extra code for adding drinks which are missing from cocktaildb
+
+
+app.get('/drinkIsExist/:id/:name', (req, res) => {
+  AllDrinksCollection.find({ $and: [{ strDrink: req.params.name }, { idDrink: req.params.id}] })
+    .toArray((err, products) => {
+      res.send(products)
+    })
+})
+
   ////////////////////////////////////////////////Start Filter Section/////////////////////////////////////////////////////
   app.get('/filter/Alcoholic', (req, res) => {
     AllDrinksCollection.find({ "strAlcoholic": "Alcoholic" })
@@ -383,8 +396,12 @@ client.connect(err => {
       })
   })
   app.get('/ingredientByName/:name', (req, res) => {
-    IngredientsListCollection.findOne({ "strIngredient": req.params.name })
+    let newName=req.params.name;
+    let new1=newName.replace("%20"," ");
+    console.log(new1)
+    IngredientsListCollection.findOne({ strIngredient:new1})
       .then(result => {
+        console.log(result);
         res.send(result)
       })
   })
@@ -633,3 +650,62 @@ client.connect(err => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+//   app.get('/ingredientDrinksByName/:name', (req, res) => {
+//     const name = req.params.name;
+//     AllDrinksCollection.find({
+//       $or: [{ "strIngredient1": name }, { "strIngredient2": name }, { "strIngredient3": name }, { "strIngredient4": name }
+//         , { "strIngredient5": name }, { "strIngredient6": name }, { "strIngredient7": name }, { "strIngredient8": name }, { "strIngredient9": name }, { "strIngredient10": name }]
+//     })
+//       .toArray((err, products) => {
+//         res.send(products)
+//       })
+//   })
+
+//   app.get('/similarDrink/:glass/:category/:alcoholic', (req, res) => {
+//     const name = req.params.name;
+//     AllDrinksCollection.find({ $and: [{ strGlass: req.params.glass }, { strCategory: req.params.category }, { strAlcoholic: req.params.alcoholic }] })
+//       .toArray((err, products) => {
+//         res.send(products)
+//       })
+//   })
+
+
+//   app.get('/similarDrink/:glass/:category/:alcoholic', (req, res) => {
+//     const name = req.params.name;
+//     AllDrinksCollection.find({ $and: [{ strGlass: req.params.glass }, { strCategory: req.params.category }, { strAlcoholic: req.params.alcoholic }] })
+//       .toArray((err, products) => {
+//         res.send(products)
+//       })
+//   })
+//   app.get('/ingredientsListCollection', (req, res) => {
+//     IngredientsListCollection.find({})
+//       .toArray((err, products) => {
+//         res.send(products)
+//       })
+//   })
