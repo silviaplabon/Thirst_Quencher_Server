@@ -550,11 +550,10 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
       })
   })
   app.get('/searchDrinksByName/:name', (req, res) => {
-    console.log(req.params.name)
-
-    AllDrinksCollection.find({strDrink:{$regex:/req.params.name/i}})
+  const newName=req.params.name;
+    AllDrinksCollection.find({ "strDrink": {$regex:newName, $options:"i"}})
       .toArray((err, documents) => {
-        console.log(documents,"documents 532")
+        console.log(documents,"documents 557")
         res.send(documents);
       })
   })
