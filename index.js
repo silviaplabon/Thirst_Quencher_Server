@@ -37,7 +37,7 @@ client.connect(err => {
   const AdminsCollection = client.db('Cocktail_collection').collection("AdminsCollection");
   const TestimonialsCollection = client.db('Cocktail_collection').collection("TestimonialsCollection");
   const MessageCollection = client.db('Cocktail_collection').collection("MessageCollection");
-  console.log("database connected");
+  
   //////////////////////////////////////////////////////Inserting Home page Data///////////////////////////////////////////////////////
   app.get('/productdata/PopularDrinks', (req, res) => {
     PopularDrinksCollection.find({})
@@ -76,28 +76,25 @@ client.connect(err => {
   app.delete('/deleteProduct/PopularDrinks/:id', (req, res) => {
     PopularDrinksCollection.deleteOne({ _id: ObjectID(req.params.id) })
       .then(result => {
-        console.log(result)
         res.send(result.deletedCount > 0)
       })
   })
   app.delete('/deleteProduct/PopularIngredients/:id', (req, res) => {
     PopularIngredientsCollection.deleteOne({ _id: ObjectID(req.params.id) })
       .then(result => {
-        console.log(result)
         res.send(result.deletedCount > 0)
       })
   })
   app.delete('/deleteProduct/LatestDrinks/:id', (req, res) => {
     LatestDrinksCollection.deleteOne({ _id: ObjectID(req.params.id) })
       .then(result => {
-        console.log(result)
+
         res.send(result.deletedCount > 0)
       })
   })
   app.delete('/deleteProduct/RandomIngredients/:id', (req, res) => {
     RandomIngredientsCollection.deleteOne({ _id: ObjectID(req.params.id) })
       .then(result => {
-        console.log(result)
         res.send(result.deletedCount > 0)
       })
   })
@@ -113,57 +110,44 @@ client.connect(err => {
 
   app.post('/adddata/PopularDrink', (req, res) => {
     const newProduct = req.body;
-    console.log(newProduct);
-    console.log(req.body, "come from client site")
     PopularDrinksCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
   app.post('/addata/PopularIngredient', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client site")
     PopularIngredientsCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
   app.post('/adddata/LatestDrink', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client sites")
     LatestDrinksCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
   app.post('/adddata/RandomIngredient', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client site")
     RandomIngredientsCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
   app.post('/adddata/RandomDrink', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client site")
     RandomDrinksCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
   ///////////////////////////////////////////////////////////////END: ADD Homepage Data///////////////////////////////////////////
   app.post('/addDrinksCollection', (req, res) => {
     const newProduct = req.body;
-    console.log(req.body, "come from client site")
     AllDrinksCollection.insertOne(newProduct)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -214,7 +198,6 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
 
@@ -226,7 +209,6 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
 
@@ -238,7 +220,6 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
 
@@ -250,7 +231,6 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
 
@@ -262,7 +242,6 @@ client.connect(err => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
   app.get('/allDrinksCollectionShow', (req, res) => {
@@ -274,26 +253,24 @@ client.connect(err => {
   // app.get('/drinksByName/:name', (req, res) => {
   //   AllDrinksCollection.find({"strDrink":req.params.name})
   //     .toArray((err, products) => {
-  //       console.log(products,"products")
+  //       //console.log(products,"products")
   //       res.send(products)
   //     })
   // })
   //////////////////////////////////////////////////Start Listing category or Glass List///////////////////////////////////
   // app.post('/categoryList', (req, res) => {
   //   const newGlass = req.body;
-  //   console.log(req.body, "come from client sites")
+  //   //console.log(req.body, "come from client sites")
   //   CategoryListCollection.insertOne(newGlass)
   //     .then(result => {
-  //       console.log('inserted count', result.insertedCount);
+  //       //console.log('inserted count', result.insertedCount);
   //       res.send(result.insertedCount > 0)
   //     })
   // })
     app.post('/filter/ingredientsList', (req, res) => {
     const newGlass = req.body;
-    console.log(req.body, "come from client sites")
     IngredientsListCollection.insertOne(newGlass)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -306,11 +283,8 @@ client.connect(err => {
   })
   app.get('/drinkDetailById/:id', (req, res) => {
    const id=req.params.id;
-   console.log(id)
     AllDrinksCollection.findOne({ idDrink: id })
       .then(result => {
-        console.log(result.length);
-        console.log(result)
         res.send(result)
       })
   })
@@ -357,14 +331,16 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
       })
   })
   app.get('/GlassDataByName/:name', (req, res) => {
-    AllDrinksCollection.find({ "strGlass": req.params.name })
+     const  newName = req.params.name.replace(/_/g, "/");
+    AllDrinksCollection.find({ "strGlass": newName })
       .toArray((err, products) => {
         res.send(products)
       })
   })
 
   app.get('/CategoryDataByName/:name', (req, res) => {
-    AllDrinksCollection.find({ "strCategory": req.params.name })
+    const  newName = req.params.name.replace(/_/g, "/");
+    AllDrinksCollection.find({ "strCategory": newName })
       .toArray((err, products) => {
         res.send(products)
       })
@@ -398,10 +374,8 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   app.get('/ingredientByName/:name', (req, res) => {
     let newName=req.params.name;
     let new1=newName.replace("%20"," ");
-    console.log(new1)
     IngredientsListCollection.findOne({ strIngredient:new1})
       .then(result => {
-        console.log(result);
         res.send(result)
       })
   })
@@ -413,10 +387,10 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   })
   //   app.post('/filter/ingredientList', (req, res) => {
   //   const newProduct = req.body;
-  //   console.log(req.body, "come from client site")
+  //   //console.log(req.body, "come from client site")
   //   IngredientListCollection.insertOne(newProduct)
   //     .then(result => {
-  //       console.log('inserted count', result.insertedCount);
+  //       //console.log('inserted count', result.insertedCount);
   //       res.send(result.insertedCount > 0)
   //     })
   // })
@@ -441,10 +415,8 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   ///////////////////////////////////////////////////////////////order section/////////////////////////////////////////////////////
   app.post('/AddSingleOrder', (req, res) => {
     const newOrder = req.body;
-    console.log(req.body, "come from client sites")
     SingleOrderCollection.insertOne(newOrder)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -453,11 +425,11 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
       .then(result => {
         if(result!=null){
            res.send(result)
-          console.log(result,"orderisExist")
+         
         }
         else{
           res.send('false')
-          console.log('error occur')
+         
         }
          
       })
@@ -467,13 +439,12 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   //   const id = req.params.id;
   //   AllDrinksCollection.findOne({ $or: [{"strDrink": req.params.name }, { "idDrink": req.params.id }] })
   //     .then(result => {
-  //       console.log(result)
+  //       //console.log(result)
   //       res.send(result)
 
   //     })
   // })
   app.patch('/updateNewPriceAndQuantity/:id', (req, res) => {
-    console.log(req.body)
     SingleOrderCollection.updateOne({ _id: ObjectID(req.params.id) },
 
       {
@@ -481,13 +452,11 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
       })
       .then(result => {
         res.send(result.modifiedCount > 0)
-        console.log(result);
       })
   })
   app.get('/SingleOrderUser/orderLength', (req, res) => {
     SingleOrderCollection.find({ email: req.query.email })
       .toArray((err, documents) => {
-        console.log(documents.length)
         res.send(documents);
 
       })
@@ -495,7 +464,6 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   app.get('/Order/userCollection', (req, res) => {
     OrdersCollection.find({ email: req.query.email })
       .toArray((err, documents) => {
-        console.log(documents.length)
         res.send(documents);
       })
   })
@@ -516,11 +484,11 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
     //     .then((decodedToken) => {
     //       let tokenEmail = decodedToken.email;
     //       let queryEmail = req.query.email;
-    //       console.log(tokenEmail, queryEmail)
+    //       //console.log(tokenEmail, queryEmail)
     //       if (tokenEmail == queryEmail) {
             SingleOrderCollection.find({ email: req.query.email })
               .toArray((err, documents) => {
-                console.log(documents?.length)
+                //console.log(documents?.length)
                 res.send(documents);
               })
           // }
@@ -529,7 +497,7 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
         //   }
         // })
         // .catch((error) => {
-        //   console.log('error', error)
+        //   //console.log('error', error)
         // })
 // 
  // }
@@ -542,10 +510,8 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   })
   app.post('/user/ShipmentAndPayment', (req, res) => {
     const newBook = req.body;
-    console.log(req.body, "come from client site")
     OrdersCollection.insertOne(newBook)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -553,7 +519,6 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   const newName=req.params.name;
     AllDrinksCollection.find({ "strDrink": {$regex:newName, $options:"i"}})
       .toArray((err, documents) => {
-        console.log(documents,"documents 557")
         res.send(documents);
       })
   })
@@ -566,10 +531,8 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   });
   app.post('/adminMaker', (req, res) => {
     const newAdmin = req.body;
-    console.log(req.body, "come from client site")
     AdminsCollection.insertOne(newAdmin)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -589,19 +552,15 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
     }) 
   })
   app.delete('/deleteUserDoneCollection/:id', (req, res) => {
-    console.log(req.params.id)
     OrdersCollection.deleteOne({_id:ObjectID(req.params.id)})
     .then(result => {
       res.send(result.deletedCount > 0)
-      console.log('deleted',result)
     }) 
   })
   app.post('/addMessage', (req, res) => {
     const newMessage = req.body;
-    console.log(req.body, "come from client site")
     MessageCollection.insertOne(newMessage)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
         res.send(result.insertedCount > 0)
       })
   })
@@ -609,10 +568,9 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
 
   app.post('/addTestimonial', (req, res) => {
     const newtestimonial = req.body;
-    console.log(req.body, "come from client site")
     TestimonialsCollection.insertOne(newtestimonial)
       .then(result => {
-        console.log('inserted count', result.insertedCount);
+      
         res.send(result.insertedCount > 0)
       })
   })
@@ -637,7 +595,6 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
   app.get('/SingleOrderDetailFinding/:id', (req, res) => {
     SingleOrderCollection.findOne({ _id: ObjectID(req.params.id) })
       .then(result => {
-        console.log(result,"result")
         res.send(result)
       })
   })
@@ -647,7 +604,7 @@ app.get('/drinkIsExist/:id/:name', (req, res) => {
 
 });
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  //console.log(`Example app listening at http://localhost:${port}`)
 })
 
 
